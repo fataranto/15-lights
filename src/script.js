@@ -17,14 +17,25 @@ const scene = new THREE.Scene()
 /**
  * Lights
  */
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.3) //no hay sombras ni matices de luz
 scene.add(ambientLight)
+
+//ambientLight.color = new THREE.Color(0x00ff00) // puedo utilizarlo para modificar el parámetro o iniciarlo si tuviese en la línea 20: "const ambientLight = new THREE.AmbientLight()"
+//ambientLight.intensity = 0.8 // lo mismo que en la línea anterior
+
+//const directionalLight = new THREE.DirectionalLight(0x00fffc, 0.3)
+//scene.add(directionalLight)
+
+//const hemisphereLight = new THREE.HemisphereLight(0xff0000, 0x0000ff, 0.3)
+//scene.add(hemisphereLight)
 
 const pointLight = new THREE.PointLight(0xffffff, 0.5)
 pointLight.position.x = 2
 pointLight.position.y = 3
 pointLight.position.z = 4
 scene.add(pointLight)
+
+gui.add(ambientLight, 'intensity').min(0).max(1).step(0.01)
 
 /**
  * Objects
