@@ -18,7 +18,7 @@ const scene = new THREE.Scene()
  * Lights
  */
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.3) //no hay sombras ni matices de luz
-scene.add(ambientLight)
+//scene.add(ambientLight)
 
 //ambientLight.color = new THREE.Color(0x00ff00) // puedo utilizarlo para modificar el parámetro o iniciarlo si tuviese en la línea 20: "const ambientLight = new THREE.AmbientLight()"
 //ambientLight.intensity = 0.8 // lo mismo que en la línea anterior
@@ -29,11 +29,24 @@ scene.add(ambientLight)
 //const hemisphereLight = new THREE.HemisphereLight(0xff0000, 0x0000ff, 0.3)
 //scene.add(hemisphereLight)
 
-const pointLight = new THREE.PointLight(0xffffff, 0.5)
-pointLight.position.x = 2
-pointLight.position.y = 3
-pointLight.position.z = 4
-scene.add(pointLight)
+const pointLight = new THREE.PointLight(0xff0000, 0.3)
+pointLight.position.x = 1
+pointLight.position.y = 2
+pointLight.position.z = 3
+//scene.add(pointLight)
+
+const rectAreaLight = new THREE.RectAreaLight(0x4e00ff, 5,3,1)
+rectAreaLight.position.set(-1.5, 0, 1.5)
+rectAreaLight.lookAt(new THREE.Vector3())
+scene.add(rectAreaLight)
+
+const spotLight = new THREE.SpotLight(0x78ff00, 0.5, 10, Math.PI * 0.1, 0.25, 1) // (color, intensity, angle, penumbra, decay)
+spotLight.position.set(0,2,3)
+scene.add(spotLight)
+spotLight.target.position.x = -0.75
+scene.add(spotLight.target) //para mover la dirección de la luz hay que incorporar a la escena spotlight.target y darle la ubicación que queremos que direcciones spotlight
+
+
 
 gui.add(ambientLight, 'intensity').min(0).max(1).step(0.01)
 
