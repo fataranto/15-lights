@@ -27,9 +27,9 @@ const ambientLight = new THREE.AmbientLight(0xffffff, 0.3) //no hay sombras ni m
 //ambientLight.intensity = 0.8 // lo mismo que en la línea anterior
 
 const directionalLight = new THREE.DirectionalLight(0x00fffc, 0.3)
-directionalLight.position.x = 1
-directionalLight.position.y = 0.5
-directionalLight.position.z = 1
+directionalLight.position.x = 0
+directionalLight.position.y = 1
+directionalLight.position.z = 0
 scene.add(directionalLight)
 
 const hemisphereLight = new THREE.HemisphereLight(0xff0000, 0x00ffff, 0.3)
@@ -54,19 +54,19 @@ scene.add(spotLight.target) //para mover la dirección de la luz hay que incorpo
 
 // Helpers
 const hemisphereLightHelper = new THREE.HemisphereLightHelper(hemisphereLight, 0.2)
-scene.add(hemisphereLightHelper)
+//scene.add(hemisphereLightHelper)
 
 const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight, 0.2)
 scene.add(directionalLightHelper)
 
 const pointLightHelper = new THREE.PointLightHelper(pointLight, 0.2)
-scene.add(pointLightHelper)
+//scene.add(pointLightHelper)
 
 const spotLightHelper = new THREE.SpotLightHelper(spotLight)
-scene.add(spotLightHelper)
+//scene.add(spotLightHelper)
 
 const rectAreaLightHelper = new RectAreaLightHelper(rectAreaLight)
-scene.add(rectAreaLightHelper)
+//  scene.add(rectAreaLightHelper)
 
 
 
