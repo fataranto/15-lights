@@ -1,6 +1,9 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'lil-gui'
+import { HemisphereLight } from 'three'
+import { PointLightHelper } from 'three'
+import { RectAreaLightHelper } from 'three/examples/jsm/helpers/RectAreaLightHelper.js'
 
 /**
  * Base
@@ -23,16 +26,19 @@ const ambientLight = new THREE.AmbientLight(0xffffff, 0.3) //no hay sombras ni m
 //ambientLight.color = new THREE.Color(0x00ff00) // puedo utilizarlo para modificar el parámetro o iniciarlo si tuviese en la línea 20: "const ambientLight = new THREE.AmbientLight()"
 //ambientLight.intensity = 0.8 // lo mismo que en la línea anterior
 
-//const directionalLight = new THREE.DirectionalLight(0x00fffc, 0.3)
-//scene.add(directionalLight)
+const directionalLight = new THREE.DirectionalLight(0x00fffc, 0.3)
+directionalLight.position.x = 1
+directionalLight.position.y = 0.5
+directionalLight.position.z = 1
+scene.add(directionalLight)
 
-//const hemisphereLight = new THREE.HemisphereLight(0xff0000, 0x0000ff, 0.3)
-//scene.add(hemisphereLight)
+const hemisphereLight = new THREE.HemisphereLight(0xff0000, 0x00ffff, 0.3)
+scene.add(hemisphereLight)
 
-const pointLight = new THREE.PointLight(0xff0000, 0.3)
+const pointLight = new THREE.PointLight(0xffff00, 0.3)
 pointLight.position.x = 1
-pointLight.position.y = 2
-pointLight.position.z = 3
+pointLight.position.y = 0.5
+pointLight.position.z = -1
 //scene.add(pointLight)
 
 const rectAreaLight = new THREE.RectAreaLight(0x4e00ff, 5,3,1)
@@ -45,6 +51,22 @@ spotLight.position.set(0,2,3)
 scene.add(spotLight)
 spotLight.target.position.x = -0.75
 scene.add(spotLight.target) //para mover la dirección de la luz hay que incorporar a la escena spotlight.target y darle la ubicación que queremos que direcciones spotlight
+
+// Helpers
+const hemisphereLightHelper = new THREE.HemisphereLightHelper(hemisphereLight, 0.2)
+scene.add(hemisphereLightHelper)
+
+const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight, 0.2)
+scene.add(directionalLightHelper)
+
+const pointLightHelper = new THREE.PointLightHelper(pointLight, 0.2)
+scene.add(pointLightHelper)
+
+const spotLightHelper = new THREE.SpotLightHelper(spotLight)
+scene.add(spotLightHelper)
+
+const rectAreaLightHelper = new RectAreaLightHelper(rectAreaLight)
+scene.add(rectAreaLightHelper)
 
 
 
